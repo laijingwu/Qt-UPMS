@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>676</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>676</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>高校人事信息数据库应用系统</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/icons/main_icon</normaloff>:/icons/main_icon</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <property name="statusTip">
+   <string>就绪</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="mainWidget">
+   <property name="styleSheet">
+    <string notr="true">#mainWidget {
+	border-image: url(:/images/main_background);
+}
+#mainWidget * {
+	border-image: url();
+}</string>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>系统设置</string>
+    </property>
+    <addaction name="actionSysUserSetting"/>
+    <addaction name="separator"/>
+    <addaction name="actionSysDbBackup"/>
+    <addaction name="actionSysDbRecover"/>
+    <addaction name="separator"/>
+    <addaction name="actionSysReload"/>
+    <addaction name="actionSysExit"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>基础数据信息</string>
+    </property>
+    <addaction name="actionInfNation"/>
+    <addaction name="actionInfPosition"/>
+    <addaction name="actionInfEducation"/>
+    <addaction name="actionInfPolitical"/>
+    <addaction name="actionInfDept"/>
+    <addaction name="actionInfWage"/>
+    <addaction name="actionInfTechnical"/>
+    <addaction name="actionInfAdmin"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>组织机构信息</string>
+    </property>
+    <addaction name="actionOrgDept"/>
+    <addaction name="actionOrgSection"/>
+    <addaction name="actionOrgAuxiliary"/>
+    <addaction name="actionOrgAppendant"/>
+    <addaction name="actionOrgFulltime"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>人事档案管理</string>
+    </property>
+    <addaction name="actionHumanBrowse"/>
+    <addaction name="actionHumanQuery"/>
+    <addaction name="actionHumanStatistics"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>系统工具</string>
+    </property>
+    <addaction name="actionToolNotes"/>
+    <addaction name="actionToolContacts"/>
+    <addaction name="actionToolMeeting"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionHelpDocument"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_6"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="font">
+    <font>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::NoContextMenu</enum>
+   </property>
+   <property name="windowTitle">
+    <string>工具栏</string>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::AllToolBarAreas</set>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonTextUnderIcon</enum>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSysUserSetting"/>
+   <addaction name="actionSysReload"/>
+   <addaction name="actionSysExit"/>
+   <addaction name="separator"/>
+   <addaction name="actionInfEducation"/>
+   <addaction name="actionInfTechnical"/>
+   <addaction name="separator"/>
+   <addaction name="actionOrgDept"/>
+   <addaction name="actionOrgSection"/>
+   <addaction name="separator"/>
+   <addaction name="actionHumanBrowse"/>
+   <addaction name="actionHumanQuery"/>
+   <addaction name="actionHumanStatistics"/>
+   <addaction name="separator"/>
+   <addaction name="actionCheckQuery"/>
+   <addaction name="actionToolNotes"/>
+   <addaction name="actionToolContacts"/>
+   <addaction name="actionToolMeeting"/>
+   <addaction name="separator"/>
+   <addaction name="actionHelpDocument"/>
+  </widget>
+  <action name="actionSysUserSetting">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_user_setting</normaloff>:/icons/icon_user_setting</iconset>
+   </property>
+   <property name="text">
+    <string>用户设置</string>
+   </property>
+   <property name="toolTip">
+    <string>更改用户密码和访问权限
+用户设置</string>
+   </property>
+  </action>
+  <action name="actionSysDbBackup">
+   <property name="text">
+    <string>数据库备份</string>
+   </property>
+   <property name="toolTip">
+    <string>对数据库进行备份
+数据库备份</string>
+   </property>
+  </action>
+  <action name="actionSysDbRecover">
+   <property name="text">
+    <string>数据库还原</string>
+   </property>
+   <property name="toolTip">
+    <string>从数据库备份中还原数据
+数据库还原</string>
+   </property>
+  </action>
+  <action name="actionSysReload">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_reload</normaloff>:/icons/icon_reload</iconset>
+   </property>
+   <property name="text">
+    <string>重新登录</string>
+   </property>
+   <property name="toolTip">
+    <string>切换用户
+重新登录</string>
+   </property>
+  </action>
+  <action name="actionSysExit">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_logout</normaloff>:/icons/icon_logout</iconset>
+   </property>
+   <property name="text">
+    <string>退出系统</string>
+   </property>
+   <property name="toolTip">
+    <string>系统关闭
+退出系统</string>
+   </property>
+  </action>
+  <action name="actionInfNation">
+   <property name="text">
+    <string>民族信息</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工民族信息进行管理
+民族信息</string>
+   </property>
+  </action>
+  <action name="actionInfPosition">
+   <property name="text">
+    <string>教工岗位</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工岗位信息进行管理
+教工岗位</string>
+   </property>
+  </action>
+  <action name="actionInfEducation">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_education</normaloff>:/icons/icon_education</iconset>
+   </property>
+   <property name="text">
+    <string>文化程度</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工文化程度进行管理
+文化程度</string>
+   </property>
+  </action>
+  <action name="actionInfPolitical">
+   <property name="text">
+    <string>政治面貌</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工政治面貌进行管理
+政治面貌</string>
+   </property>
+  </action>
+  <action name="actionInfDept">
+   <property name="text">
+    <string>院系部门</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工院系部门进行管理
+院系部门</string>
+   </property>
+  </action>
+  <action name="actionInfWage">
+   <property name="text">
+    <string>工资等级</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工工资等级进行管理
+工资等级</string>
+   </property>
+  </action>
+  <action name="actionInfTechnical">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_technical</normaloff>:/icons/icon_technical</iconset>
+   </property>
+   <property name="text">
+    <string>职称类别</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工职称类别进行管理
+职称类别</string>
+   </property>
+  </action>
+  <action name="actionInfAdmin">
+   <property name="text">
+    <string>行政职务</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工行政职务进行管理
+行政职务</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>关于 Database</string>
+   </property>
+   <property name="toolTip">
+    <string>系统简介
+关于 Database</string>
+   </property>
+  </action>
+  <action name="actionHelpDocument">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_help</normaloff>:/icons/icon_help</iconset>
+   </property>
+   <property name="text">
+    <string>帮助文档</string>
+   </property>
+   <property name="toolTip">
+    <string>对高校人事信息数据库应用系统的用户使用进行说明
+帮助文档</string>
+   </property>
+  </action>
+  <action name="actionOrgDept">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_orgdept</normaloff>:/icons/icon_orgdept</iconset>
+   </property>
+   <property name="text">
+    <string>教学院系</string>
+   </property>
+   <property name="toolTip">
+    <string>对教学院系信息进行管理
+教学院系</string>
+   </property>
+  </action>
+  <action name="actionOrgSection">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_orgsection</normaloff>:/icons/icon_orgsection</iconset>
+   </property>
+   <property name="text">
+    <string>管理部门</string>
+   </property>
+   <property name="toolTip">
+    <string>对管理部门信息进行管理
+管理部门</string>
+   </property>
+  </action>
+  <action name="actionOrgAuxiliary">
+   <property name="text">
+    <string>教辅部门</string>
+   </property>
+   <property name="toolTip">
+    <string>对教辅部门信息进行管理
+教辅部门</string>
+   </property>
+  </action>
+  <action name="actionOrgAppendant">
+   <property name="text">
+    <string>附属单位</string>
+   </property>
+   <property name="toolTip">
+    <string>对附属单位信息进行管理
+附属单位</string>
+   </property>
+  </action>
+  <action name="actionOrgFulltime">
+   <property name="text">
+    <string>专职单位</string>
+   </property>
+   <property name="toolTip">
+    <string>对专职单位信息进行管理
+专职单位</string>
+   </property>
+  </action>
+  <action name="actionHumanBrowse">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_human_browse</normaloff>:/icons/icon_human_browse</iconset>
+   </property>
+   <property name="text">
+    <string>人事档案浏览</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工人事信息进行浏览
+人事档案浏览</string>
+   </property>
+  </action>
+  <action name="actionHumanQuery">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_human_query</normaloff>:/icons/icon_human_query</iconset>
+   </property>
+   <property name="text">
+    <string>人事档案查询</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工人事信息进行查询
+人事档案查询</string>
+   </property>
+  </action>
+  <action name="actionHumanStatistics">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_human_statistics</normaloff>:/icons/icon_human_statistics</iconset>
+   </property>
+   <property name="text">
+    <string>人事档案统计</string>
+   </property>
+   <property name="toolTip">
+    <string>对教工人事信息进行统计
+人事档案统计</string>
+   </property>
+  </action>
+  <action name="actionToolNotes">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_tool_notes</normaloff>:/icons/icon_tool_notes</iconset>
+   </property>
+   <property name="text">
+    <string>记事本</string>
+   </property>
+   <property name="toolTip">
+    <string>对记事本进行管理
+记事本</string>
+   </property>
+  </action>
+  <action name="actionToolContacts">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_tool_contacts</normaloff>:/icons/icon_tool_contacts</iconset>
+   </property>
+   <property name="text">
+    <string>通讯簿</string>
+   </property>
+   <property name="toolTip">
+    <string>对通讯簿进行管理
+通讯录</string>
+   </property>
+  </action>
+  <action name="actionToolMeeting">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_tool_meeting</normaloff>:/icons/icon_tool_meeting</iconset>
+   </property>
+   <property name="text">
+    <string>会议纪要</string>
+   </property>
+   <property name="toolTip">
+    <string>对会议纪要进行管理
+会议纪要</string>
+   </property>
+  </action>
+  <action name="actionCheckQuery">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icons/icon_check_query</normaloff>:/icons/icon_check_query</iconset>
+   </property>
+   <property name="text">
+    <string>考勤查询</string>
+   </property>
+   <property name="toolTip">
+    <string>考勤查询</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionSysExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>599</x>
+     <y>337</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

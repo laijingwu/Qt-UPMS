@@ -1,0 +1,27 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="main_background">res/background.png</file>
+        <file alias="icon_png">res/icon_png.png</file>
+        <file alias="title">res/title.png</file>
+        <file alias="icon_login_lock">res/icon_login_lock.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="icon_test">res/icon_test.png</file>
+        <file alias="icon_user_setting">res/icon_user_setting.png</file>
+        <file alias="icon_education">res/icon_education.png</file>
+        <file alias="icon_orgsection">res/icon_orgsection.png</file>
+        <file alias="icon_orgdept">res/icon_orgdept.png</file>
+        <file alias="icon_technical">res/icon_technical.png</file>
+        <file alias="icon_check_query">res/icon_check_query.png</file>
+        <file alias="icon_human_browse">res/icon_human_browse.png</file>
+        <file alias="icon_human_query">res/icon_human_query.png</file>
+        <file alias="icon_human_statistics">res/icon_human_statistics.png</file>
+        <file alias="icon_tool_notes">res/icon_notepad.png</file>
+        <file alias="icon_tool_contacts">res/icon_tool_contacts.png</file>
+        <file alias="icon_tool_meeting">res/icon_tool_meeting.png</file>
+        <file alias="icon_help">res/icon_help.png</file>
+        <file alias="main_icon">res/main_icon.ico</file>
+        <file alias="icon_logout">res/icon_logout.png</file>
+        <file alias="icon_reload">res/icon_reload.png</file>
+    </qresource>
+</RCC>

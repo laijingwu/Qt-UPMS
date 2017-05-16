@@ -1,0 +1,42 @@
+IDI_ICON1 ICON DISCARDABLE "res/main_icon.ico"
+
+#if defined(UNDER_CE)
+#include <winbase.h>
+#else
+#include <winver.h>
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION 1,0,0,0
+    PRODUCTVERSION 1,0,0,0
+    FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+    FILEFLAGS VS_FF_DEBUG
+#else
+    FILEFLAGS 0x0L
+#endif
+    FILEOS VOS__WINDOWS32
+    FILETYPE VFT_DLL
+    FILESUBTYPE 0x0L
+    BEGIN
+        BLOCK "StringFileInfo"
+        BEGIN
+            BLOCK "080404b0"
+            BEGIN
+                VALUE "CompanyName", "laijingwu\0"
+                VALUE "FileDescription", "高校人事信息数据库应用系统 Database\0"
+                VALUE "FileVersion", "1.0.0.0\0"
+                VALUE "ProductVersion", "1.0.0.0\0"
+                VALUE "LegalCopyright", "Copyright (C) laijingwu\0"
+                VALUE "LegalTrademarks", "laijingwu\0"
+                VALUE "OriginalFilename", "Database.exe\0"
+                VALUE "ProductName", "高校人事信息数据库应用系统\0"
+                VALUE "InternalName", "Database.exe\0"
+           END
+        END
+        
+        BLOCK "VarFileInfo"
+        BEGIN
+            VALUE "Translation", 0x804, 1200
+        END        
+    END
