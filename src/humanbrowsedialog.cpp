@@ -29,12 +29,32 @@ HumanBrowseDialog::HumanBrowseDialog(QWidget *parent) :
     connect(ui->list_staff, SIGNAL(clicked(const QModelIndex &)), this, SLOT(list_staff_changed(const QModelIndex &)));
     /***** 教工列表 End *****/
 
+    /***** 查询模块 *****/
+    ui->combo_select_condition->addItem(tr("按教工编号查询"), "code");
+    ui->combo_select_condition->addItem(tr("按教工姓名查询"), "name");
+    ui->combo_select_condition->addItem(tr("按院系部门查询"), "department");
+    ui->combo_select_condition->addItem(tr("按行政职务查询"), "job");
+    ui->combo_select_condition->addItem(tr("按职称类别查询"), "technical");
+    ui->combo_select_condition->addItem(tr("按教工岗位查询"), "post");
+    ui->combo_select_condition->addItem(tr("按工资等级查询"), "salary");
+    ui->combo_select_condition->addItem(tr("按教工性别查询"), "sex");
+    ui->combo_select_condition->addItem(tr("按婚姻状况查询"), "marriage");
+    ui->combo_select_condition->addItem(tr("按民族信息查询"), "race");
+    ui->combo_select_condition->addItem(tr("按政治面貌查询"), "party");
+    ui->combo_select_condition->addItem(tr("按文化程度查询"), "degree");
+    connect(ui->btn_select, SIGNAL(clicked(bool)), this, SLOT(btn_select_clicked()));
+    /***** 查询模块 End *****/
+
     tab_family_member_init(); // 家庭成员信息
     tab_work_experience_init(); // 工作经历信息
     tab_reward_init(); // 奖励记录
     tab_punish_init(); // 违纪处罚
     tab_paper_init(); // 论文成果
     tab_project_init(); // 项目成果
+    tab_technical_init(); // 职称评定
+    tab_academic_init(); // 学历教育
+    tab_continue_init(); // 继续教育
+    tab_teaching_init(); // 课堂教学
 
     ui->list_staff->selectRow(0);
 }
@@ -48,7 +68,25 @@ HumanBrowseDialog::~HumanBrowseDialog()
     delete punish_model;
     delete paper_model;
     delete project_model;
+    delete technical_model;
+    delete academic_model;
+    delete continue_model;
+    delete teaching_model;
     delete ui;
+}
+
+void HumanBrowseDialog::btn_select_clicked()
+{
+    if (ui->edit_select_content->text().trimmed().isEmpty())
+        staff_model->setFilter("1");
+    else
+        staff_model->setFilter(QString("%1 LIKE '%%%2%%'").arg(ui->combo_select_condition->currentData().toString(), ui->edit_select_content->text().trimmed()));
+    staff_model->select();
+
+    if (staff_model->rowCount() > 0) // 非空列表
+        ui->list_staff->selectRow(0);
+    else
+        ui->btn_total_add->click();
 }
 
 void HumanBrowseDialog::list_staff_changed(const QModelIndex &current)
@@ -197,12 +235,85 @@ void HumanBrowseDialog::list_staff_changed(const QModelIndex &current)
     project_model->setFilter(QString("code = '%1'").arg(ui->edit_current_code->text().trimmed()));
     project_model->select();
 
+    // 职称评定
+    // 清空职称评定编辑框
+    ui->technical_edit_title->clear();
+    ui->technical_combo_mode->setCurrentIndex(0);
+    ui->technical_edit_unit->clear();
+    ui->technical_date_assess->setDate(QDate::currentDate());
+    ui->technical_edit_hire->clear();
+    ui->technical_date_begin->setDate(QDate::currentDate());
+    ui->technical_date_end->setDate(QDate::currentDate());
+    ui->technical_edit_employ->clear();
+    ui->btn_technical_delete->setEnabled(false);
+    ui->btn_technical_update->setEnabled(false);
+    ui->btn_technical_save->setEnabled(false);
+    // 重新绑定过滤器
+    technical_model->setFilter(QString("code = '%1'").arg(ui->edit_current_code->text().trimmed()));
+    technical_model->select();
+
+    // 学历教育
+    // 清空学历教育编辑框
+    ui->academic_date_begin->setDate(QDate::currentDate());
+    ui->academic_date_end->setDate(QDate::currentDate());
+    ui->academic_edit_university->clear();
+    ui->academic_edit_department->clear();
+    ui->academic_edit_major->clear();
+    ui->academic_combo_diploma->setCurrentIndex(0);
+    ui->academic_combo_degree->setCurrentIndex(0);
+    ui->btn_academic_delete->setEnabled(false);
+    ui->btn_academic_update->setEnabled(false);
+    ui->btn_academic_save->setEnabled(false);
+    // 重新绑定过滤器
+    academic_model->setFilter(QString("code = '%1'").arg(ui->edit_current_code->text().trimmed()));
+    academic_model->select();
+
+    // 继续教育
+    // 清空继续教育编辑框
+    ui->continue_date_begin->setDate(QDate::currentDate());
+    ui->continue_date_end->setDate(QDate::currentDate());
+    ui->continue_combo_mode->setCurrentIndex(0);
+    ui->continue_combo_effect->setCurrentIndex(0);
+    ui->continue_edit_content->clear();
+    ui->continue_edit_unit->clear();
+    ui->continue_edit_location->clear();
+    ui->continue_edit_cost->clear();
+    ui->continue_edit_hour->clear();
+    ui->btn_continue_delete->setEnabled(false);
+    ui->btn_continue_update->setEnabled(false);
+    ui->btn_continue_save->setEnabled(false);
+    // 重新绑定过滤器
+    continue_model->setFilter(QString("code = '%1'").arg(ui->edit_current_code->text().trimmed()));
+    continue_model->select();
+
+    // 课堂教学
+    // 清空课堂教学编辑框
+    ui->teaching_edit_annual->clear();
+    ui->teaching_combo_semester->setCurrentIndex(0);
+    ui->teaching_edit_course->clear();
+    ui->teaching_combo_sort->setCurrentIndex(0);
+    ui->teaching_combo_level->setCurrentIndex(0);
+    ui->teaching_edit_class->clear();
+    ui->teaching_combo_object->setCurrentIndex(0);
+    ui->teaching_edit_location->clear();
+    ui->teaching_edit_hour->clear();
+    ui->btn_teaching_delete->setEnabled(false);
+    ui->btn_teaching_update->setEnabled(false);
+    ui->btn_teaching_save->setEnabled(false);
+    // 重新绑定过滤器
+    teaching_model->setFilter(QString("code = '%1'").arg(ui->edit_current_code->text().trimmed()));
+    teaching_model->select();
+
     ui->list_family->selectRow(0);
     ui->list_workexperience->selectRow(0);
     ui->list_reward->selectRow(0);
     ui->list_punish->selectRow(0);
     ui->list_paper->selectRow(0);
     ui->list_project->selectRow(0);
+    ui->list_technical->selectRow(0);
+    ui->list_academic->selectRow(0);
+    ui->list_continue->selectRow(0);
+    ui->list_teaching->selectRow(0);
 }
 
 void HumanBrowseDialog::btn_total_add_clicked()
@@ -256,7 +367,19 @@ void HumanBrowseDialog::btn_total_delete_clicked()
         if (ui->list_staff->horizontalHeader()->count() > nIndexRow) // 列表判空
             ui->list_staff->selectRow(nIndexRow);
         else
+        {
             ui->btn_total_add->click();
+            ui->btn_family_add->click();
+            ui->btn_workexp_add->click();
+            ui->btn_reward_add->click();
+            ui->btn_punish_add->click();
+            ui->btn_paper_add->click();
+            ui->btn_project_add->click();
+            ui->btn_technical_add->click();
+            ui->btn_academic_add->click();
+            ui->btn_continue_add->click();
+            ui->btn_teaching_add->click();
+        }
     }
 }
 
@@ -1242,7 +1365,479 @@ void HumanBrowseDialog::list_project_changed(const QModelIndex &current)
     ui->btn_project_save->setEnabled(false);
 }
 
-// technical access   technical
-// academic education    academic
-// continue education    continue
-// class teaching        teaching
+void HumanBrowseDialog::tab_technical_init()
+{
+    connect(ui->btn_technical_add, SIGNAL(clicked(bool)), this, SLOT(btn_technical_add_clicked()));
+    connect(ui->btn_technical_delete, SIGNAL(clicked(bool)), this, SLOT(btn_technical_delete_clicked()));
+    connect(ui->btn_technical_save, SIGNAL(clicked(bool)), this, SLOT(btn_technical_save_clicked()));
+    connect(ui->btn_technical_update, SIGNAL(clicked(bool)), this, SLOT(btn_technical_update_clicked()));
+
+    // 职称评定列表
+    technical_model = new QSqlTableModel(this, SqlController->getDefaultConnection());
+    technical_model->setTable("technical_assess");
+    technical_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    technical_model->select();
+    technical_model->setHeaderData(2, Qt::Horizontal, tr("专业技术资格名称"));
+    technical_model->setHeaderData(3, Qt::Horizontal, tr("评定方式"));
+    technical_model->setHeaderData(4, Qt::Horizontal, tr("评定单位"));
+    technical_model->setHeaderData(5, Qt::Horizontal, tr("取得时间"));
+    technical_model->setHeaderData(6, Qt::Horizontal, tr("聘用专业技术职务"));
+    technical_model->setHeaderData(7, Qt::Horizontal, tr("聘用开始时间"));
+    technical_model->setHeaderData(8, Qt::Horizontal, tr("聘用结束时间"));
+    technical_model->setHeaderData(9, Qt::Horizontal, tr("聘用单位"));
+    while (technical_model->canFetchMore())
+        technical_model->fetchMore();
+
+    ui->list_technical->setModel(technical_model);
+    ui->list_technical->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->list_technical->setColumnHidden(0, true);
+    ui->list_technical->setColumnHidden(1, true);
+    connect(ui->list_technical->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(list_technical_changed(const QModelIndex &)));
+    connect(ui->list_technical, SIGNAL(clicked(const QModelIndex &)), this, SLOT(list_technical_changed(const QModelIndex &)));
+    ui->list_technical->selectRow(0);
+}
+
+void HumanBrowseDialog::btn_technical_add_clicked()
+{
+    ui->technical_edit_title->clear();
+    ui->technical_combo_mode->setCurrentIndex(0);
+    ui->technical_edit_unit->clear();
+    ui->technical_date_assess->setDate(QDate::currentDate());
+    ui->technical_edit_hire->clear();
+    ui->technical_date_begin->setDate(QDate::currentDate());
+    ui->technical_date_end->setDate(QDate::currentDate());
+    ui->technical_edit_employ->clear();
+    ui->btn_technical_delete->setEnabled(false);
+    ui->btn_technical_update->setEnabled(false);
+    ui->btn_technical_save->setEnabled(true);
+}
+
+void HumanBrowseDialog::btn_technical_save_clicked()
+{
+    int rowNum = technical_model->rowCount();
+    technical_model->insertRow(rowNum);
+    technical_model->setData(technical_model->index(rowNum, 0), 0);
+    technical_model->setData(technical_model->index(rowNum, 1), ui->edit_current_code->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 2), ui->technical_edit_title->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 3), ui->technical_combo_mode->currentText().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 4), ui->technical_edit_unit->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 5), ui->technical_date_assess->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 6), ui->technical_edit_hire->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 7), ui->technical_date_begin->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 8), ui->technical_date_end->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 9), ui->technical_edit_employ->text().trimmed());
+    technical_model->submitAll();
+    technical_model->select();
+    QMessageBox::information(this, tr("提示"), tr("职称评定记录添加成功！"));
+    ui->list_technical->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_technical_update_clicked()
+{
+    int rowNum = ui->list_technical->currentIndex().row(); // 获取选中行
+    technical_model->setData(technical_model->index(rowNum, 2), ui->technical_edit_title->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 3), ui->technical_combo_mode->currentText().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 4), ui->technical_edit_unit->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 5), ui->technical_date_assess->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 6), ui->technical_edit_hire->text().trimmed());
+    technical_model->setData(technical_model->index(rowNum, 7), ui->technical_date_begin->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 8), ui->technical_date_end->date().toString("yyyy-MM-dd"));
+    technical_model->setData(technical_model->index(rowNum, 9), ui->technical_edit_employ->text().trimmed());
+    technical_model->submitAll();
+    technical_model->select();
+    QMessageBox::information(this, tr("提示"), tr("职称评定记录修改成功！"));
+    ui->list_technical->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_technical_delete_clicked()
+{
+    if (technical_model->rowCount() <= 0) // 空列表
+        return;
+
+    if (QMessageBox::warning(this, tr("删除职称评定记录"), tr("您是否确定删除当前选中的职称评定记录？"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
+    {
+        int nIndexRow = ui->list_technical->currentIndex().row(); // 获取选中行
+        technical_model->removeRow(nIndexRow--);
+        technical_model->submitAll();
+        technical_model->select();
+        if (nIndexRow < 0) nIndexRow = 0; // 防止越界
+        if (ui->list_technical->horizontalHeader()->count() > nIndexRow) // 列表判空
+            ui->list_technical->selectRow(nIndexRow);
+        else
+            ui->btn_technical_add->click();
+    }
+}
+
+void HumanBrowseDialog::list_technical_changed(const QModelIndex &current)
+{
+    ui->technical_edit_title->setText(technical_model->index(current.row(), 2).data().toString());
+    ui->technical_combo_mode->setCurrentText(technical_model->index(current.row(), 3).data().toString());
+    ui->technical_edit_unit->setText(technical_model->index(current.row(), 4).data().toString());
+    ui->technical_date_assess->setDate(QDate::fromString(technical_model->index(current.row(), 5).data().toString(), "yyyy-MM-dd"));
+    ui->technical_edit_hire->setText(technical_model->index(current.row(), 6).data().toString());
+    ui->technical_date_begin->setDate(QDate::fromString(technical_model->index(current.row(), 7).data().toString(), "yyyy-MM-dd"));
+    ui->technical_date_end->setDate(QDate::fromString(technical_model->index(current.row(), 8).data().toString(), "yyyy-MM-dd"));
+    ui->technical_edit_employ->setText(technical_model->index(current.row(), 9).data().toString());
+    ui->btn_technical_delete->setEnabled(true);
+    ui->btn_technical_update->setEnabled(true);
+    ui->btn_technical_save->setEnabled(false);
+}
+
+void HumanBrowseDialog::tab_academic_init()
+{
+    connect(ui->btn_academic_add, SIGNAL(clicked(bool)), this, SLOT(btn_academic_add_clicked()));
+    connect(ui->btn_academic_delete, SIGNAL(clicked(bool)), this, SLOT(btn_academic_delete_clicked()));
+    connect(ui->btn_academic_save, SIGNAL(clicked(bool)), this, SLOT(btn_academic_save_clicked()));
+    connect(ui->btn_academic_update, SIGNAL(clicked(bool)), this, SLOT(btn_academic_update_clicked()));
+
+    // 学历教育列表
+    academic_model = new QSqlTableModel(this, SqlController->getDefaultConnection());
+    academic_model->setTable("academic_education");
+    academic_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    academic_model->select();
+    academic_model->setHeaderData(2, Qt::Horizontal, tr("开始时间"));
+    academic_model->setHeaderData(3, Qt::Horizontal, tr("结束时间"));
+    academic_model->setHeaderData(4, Qt::Horizontal, tr("毕业院校"));
+    academic_model->setHeaderData(5, Qt::Horizontal, tr("所在院系"));
+    academic_model->setHeaderData(6, Qt::Horizontal, tr("所学专业"));
+    academic_model->setHeaderData(7, Qt::Horizontal, tr("学历"));
+    academic_model->setHeaderData(8, Qt::Horizontal, tr("学位"));
+    while (academic_model->canFetchMore())
+        academic_model->fetchMore();
+
+    ui->list_academic->setModel(academic_model);
+    ui->list_academic->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->list_academic->setColumnHidden(0, true);
+    ui->list_academic->setColumnHidden(1, true);
+    connect(ui->list_academic->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(list_academic_changed(const QModelIndex &)));
+    connect(ui->list_academic, SIGNAL(clicked(const QModelIndex &)), this, SLOT(list_academic_changed(const QModelIndex &)));
+    ui->list_academic->selectRow(0);
+}
+
+void HumanBrowseDialog::btn_academic_add_clicked()
+{
+    ui->academic_date_begin->setDate(QDate::currentDate());
+    ui->academic_date_end->setDate(QDate::currentDate());
+    ui->academic_edit_university->clear();
+    ui->academic_edit_department->clear();
+    ui->academic_edit_major->clear();
+    ui->academic_combo_diploma->setCurrentIndex(0);
+    ui->academic_combo_degree->setCurrentIndex(0);
+    ui->btn_academic_delete->setEnabled(false);
+    ui->btn_academic_update->setEnabled(false);
+    ui->btn_academic_save->setEnabled(true);
+}
+
+void HumanBrowseDialog::btn_academic_save_clicked()
+{
+    int rowNum = academic_model->rowCount();
+    academic_model->insertRow(rowNum);
+    academic_model->setData(academic_model->index(rowNum, 0), 0);
+    academic_model->setData(academic_model->index(rowNum, 1), ui->edit_current_code->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 2), ui->academic_date_begin->date().toString("yyyy-MM-dd"));
+    academic_model->setData(academic_model->index(rowNum, 3), ui->academic_date_end->date().toString("yyyy-MM-dd"));
+    academic_model->setData(academic_model->index(rowNum, 4), ui->academic_edit_university->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 5), ui->academic_edit_department->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 6), ui->academic_edit_major->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 7), ui->academic_combo_diploma->currentText().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 8), ui->academic_combo_degree->currentText().trimmed());
+    academic_model->submitAll();
+    academic_model->select();
+    QMessageBox::information(this, tr("提示"), tr("学历教育记录添加成功！"));
+    ui->list_academic->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_academic_update_clicked()
+{
+    int rowNum = ui->list_academic->currentIndex().row(); // 获取选中行
+    academic_model->setData(academic_model->index(rowNum, 2), ui->academic_date_begin->date().toString("yyyy-MM-dd"));
+    academic_model->setData(academic_model->index(rowNum, 3), ui->academic_date_end->date().toString("yyyy-MM-dd"));
+    academic_model->setData(academic_model->index(rowNum, 4), ui->academic_edit_university->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 5), ui->academic_edit_department->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 6), ui->academic_edit_major->text().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 7), ui->academic_combo_diploma->currentText().trimmed());
+    academic_model->setData(academic_model->index(rowNum, 8), ui->academic_combo_degree->currentText().trimmed());
+    academic_model->submitAll();
+    academic_model->select();
+    QMessageBox::information(this, tr("提示"), tr("学历教育记录修改成功！"));
+    ui->list_academic->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_academic_delete_clicked()
+{
+    if (academic_model->rowCount() <= 0) // 空列表
+        return;
+
+    if (QMessageBox::warning(this, tr("删除学历教育记录"), tr("您是否确定删除当前选中的学历教育记录？"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
+    {
+        int nIndexRow = ui->list_academic->currentIndex().row(); // 获取选中行
+        academic_model->removeRow(nIndexRow--);
+        academic_model->submitAll();
+        academic_model->select();
+        if (nIndexRow < 0) nIndexRow = 0; // 防止越界
+        if (ui->list_academic->horizontalHeader()->count() > nIndexRow) // 列表判空
+            ui->list_academic->selectRow(nIndexRow);
+        else
+            ui->btn_academic_add->click();
+    }
+}
+
+void HumanBrowseDialog::list_academic_changed(const QModelIndex &current)
+{
+    ui->academic_date_begin->setDate(QDate::fromString(academic_model->index(current.row(), 2).data().toString(), "yyyy-MM-dd"));
+    ui->academic_date_end->setDate(QDate::fromString(academic_model->index(current.row(), 3).data().toString(), "yyyy-MM-dd"));
+    ui->academic_edit_university->setText(academic_model->index(current.row(), 4).data().toString());
+    ui->academic_edit_department->setText(academic_model->index(current.row(), 5).data().toString());
+    ui->academic_edit_major->setText(academic_model->index(current.row(), 6).data().toString());
+    ui->academic_combo_diploma->setCurrentText(academic_model->index(current.row(), 7).data().toString());
+    ui->academic_combo_degree->setCurrentText(academic_model->index(current.row(), 8).data().toString());
+    ui->btn_academic_delete->setEnabled(true);
+    ui->btn_academic_update->setEnabled(true);
+    ui->btn_academic_save->setEnabled(false);
+}
+
+void HumanBrowseDialog::tab_continue_init()
+{
+    connect(ui->btn_continue_add, SIGNAL(clicked(bool)), this, SLOT(btn_continue_add_clicked()));
+    connect(ui->btn_continue_delete, SIGNAL(clicked(bool)), this, SLOT(btn_continue_delete_clicked()));
+    connect(ui->btn_continue_save, SIGNAL(clicked(bool)), this, SLOT(btn_continue_save_clicked()));
+    connect(ui->btn_continue_update, SIGNAL(clicked(bool)), this, SLOT(btn_continue_update_clicked()));
+
+    // 继续教育列表
+    continue_model = new QSqlTableModel(this, SqlController->getDefaultConnection());
+    continue_model->setTable("continue_education");
+    continue_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    continue_model->select();
+    continue_model->setHeaderData(2, Qt::Horizontal, tr("开始时间"));
+    continue_model->setHeaderData(3, Qt::Horizontal, tr("结束时间"));
+    continue_model->setHeaderData(4, Qt::Horizontal, tr("教育方式"));
+    continue_model->setHeaderData(5, Qt::Horizontal, tr("教育效果"));
+    continue_model->setHeaderData(6, Qt::Horizontal, tr("教育内容"));
+    continue_model->setHeaderData(7, Qt::Horizontal, tr("培训单位"));
+    continue_model->setHeaderData(8, Qt::Horizontal, tr("培训地点"));
+    continue_model->setHeaderData(9, Qt::Horizontal, tr("培训经费"));
+    continue_model->setHeaderData(10, Qt::Horizontal, tr("培训学时"));
+    while (continue_model->canFetchMore())
+        continue_model->fetchMore();
+
+    ui->list_continue->setModel(continue_model);
+    ui->list_continue->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->list_continue->setColumnHidden(0, true);
+    ui->list_continue->setColumnHidden(1, true);
+    connect(ui->list_continue->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(list_continue_changed(const QModelIndex &)));
+    connect(ui->list_continue, SIGNAL(clicked(const QModelIndex &)), this, SLOT(list_continue_changed(const QModelIndex &)));
+    ui->list_continue->selectRow(0);
+}
+
+void HumanBrowseDialog::btn_continue_add_clicked()
+{
+    ui->continue_date_begin->setDate(QDate::currentDate());
+    ui->continue_date_end->setDate(QDate::currentDate());
+    ui->continue_combo_mode->setCurrentIndex(0);
+    ui->continue_combo_effect->setCurrentIndex(0);
+    ui->continue_edit_content->clear();
+    ui->continue_edit_unit->clear();
+    ui->continue_edit_location->clear();
+    ui->continue_edit_cost->clear();
+    ui->continue_edit_hour->clear();
+    ui->btn_continue_delete->setEnabled(false);
+    ui->btn_continue_update->setEnabled(false);
+    ui->btn_continue_save->setEnabled(true);
+}
+
+void HumanBrowseDialog::btn_continue_save_clicked()
+{
+    int rowNum = continue_model->rowCount();
+    continue_model->insertRow(rowNum);
+    continue_model->setData(continue_model->index(rowNum, 0), 0);
+    continue_model->setData(continue_model->index(rowNum, 1), ui->edit_current_code->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 2), ui->continue_date_begin->date().toString("yyyy-MM-dd"));
+    continue_model->setData(continue_model->index(rowNum, 3), ui->continue_date_end->date().toString("yyyy-MM-dd"));
+    continue_model->setData(continue_model->index(rowNum, 4), ui->continue_combo_mode->currentText().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 5), ui->continue_combo_effect->currentText().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 6), ui->continue_edit_content->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 7), ui->continue_edit_unit->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 8), ui->continue_edit_location->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 9), ui->continue_edit_cost->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 10), ui->continue_edit_hour->text().trimmed());
+    continue_model->submitAll();
+    continue_model->select();
+    QMessageBox::information(this, tr("提示"), tr("继续教育记录添加成功！"));
+    ui->list_continue->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_continue_update_clicked()
+{
+    int rowNum = ui->list_continue->currentIndex().row(); // 获取选中行
+    continue_model->setData(continue_model->index(rowNum, 2), ui->continue_date_begin->date().toString("yyyy-MM-dd"));
+    continue_model->setData(continue_model->index(rowNum, 3), ui->continue_date_end->date().toString("yyyy-MM-dd"));
+    continue_model->setData(continue_model->index(rowNum, 4), ui->continue_combo_mode->currentText().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 5), ui->continue_combo_effect->currentText().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 6), ui->continue_edit_content->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 7), ui->continue_edit_unit->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 8), ui->continue_edit_location->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 9), ui->continue_edit_cost->text().trimmed());
+    continue_model->setData(continue_model->index(rowNum, 10), ui->continue_edit_hour->text().trimmed());
+    continue_model->submitAll();
+    continue_model->select();
+    QMessageBox::information(this, tr("提示"), tr("继续教育记录修改成功！"));
+    ui->list_continue->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_continue_delete_clicked()
+{
+    if (continue_model->rowCount() <= 0) // 空列表
+        return;
+
+    if (QMessageBox::warning(this, tr("删除继续教育记录"), tr("您是否确定删除当前选中的继续教育记录？"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
+    {
+        int nIndexRow = ui->list_continue->currentIndex().row(); // 获取选中行
+        continue_model->removeRow(nIndexRow--);
+        continue_model->submitAll();
+        continue_model->select();
+        if (nIndexRow < 0) nIndexRow = 0; // 防止越界
+        if (ui->list_continue->horizontalHeader()->count() > nIndexRow) // 列表判空
+            ui->list_continue->selectRow(nIndexRow);
+        else
+            ui->btn_continue_add->click();
+    }
+}
+
+void HumanBrowseDialog::list_continue_changed(const QModelIndex &current)
+{
+    ui->continue_date_begin->setDate(QDate::fromString(continue_model->index(current.row(), 2).data().toString(), "yyyy-MM-dd"));
+    ui->continue_date_end->setDate(QDate::fromString(continue_model->index(current.row(), 3).data().toString(), "yyyy-MM-dd"));
+    ui->continue_combo_mode->setCurrentText(continue_model->index(current.row(), 4).data().toString());
+    ui->continue_combo_effect->setCurrentText(continue_model->index(current.row(), 5).data().toString());
+    ui->continue_edit_content->setText(continue_model->index(current.row(), 6).data().toString());
+    ui->continue_edit_unit->setText(continue_model->index(current.row(), 7).data().toString());
+    ui->continue_edit_location->setText(continue_model->index(current.row(), 8).data().toString());
+    ui->continue_edit_cost->setText(continue_model->index(current.row(), 9).data().toString());
+    ui->continue_edit_hour->setText(continue_model->index(current.row(), 10).data().toString());
+    ui->btn_continue_delete->setEnabled(true);
+    ui->btn_continue_update->setEnabled(true);
+    ui->btn_continue_save->setEnabled(false);
+}
+
+void HumanBrowseDialog::tab_teaching_init()
+{
+    connect(ui->btn_teaching_add, SIGNAL(clicked(bool)), this, SLOT(btn_teaching_add_clicked()));
+    connect(ui->btn_teaching_delete, SIGNAL(clicked(bool)), this, SLOT(btn_teaching_delete_clicked()));
+    connect(ui->btn_teaching_save, SIGNAL(clicked(bool)), this, SLOT(btn_teaching_save_clicked()));
+    connect(ui->btn_teaching_update, SIGNAL(clicked(bool)), this, SLOT(btn_teaching_update_clicked()));
+
+    // 课程教学列表
+    teaching_model = new QSqlTableModel(this, SqlController->getDefaultConnection());
+    teaching_model->setTable("class_teaching");
+    teaching_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    teaching_model->select();
+    teaching_model->setHeaderData(2, Qt::Horizontal, tr("年度"));
+    teaching_model->setHeaderData(3, Qt::Horizontal, tr("学期"));
+    teaching_model->setHeaderData(4, Qt::Horizontal, tr("课程名"));
+    teaching_model->setHeaderData(5, Qt::Horizontal, tr("课程性质"));
+    teaching_model->setHeaderData(6, Qt::Horizontal, tr("课程类别"));
+    teaching_model->setHeaderData(7, Qt::Horizontal, tr("授课班级"));
+    teaching_model->setHeaderData(8, Qt::Horizontal, tr("授课对象"));
+    teaching_model->setHeaderData(9, Qt::Horizontal, tr("地点"));
+    teaching_model->setHeaderData(10, Qt::Horizontal, tr("学时"));
+    while (teaching_model->canFetchMore())
+        teaching_model->fetchMore();
+
+    ui->list_teaching->setModel(teaching_model);
+    ui->list_teaching->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
+    ui->list_teaching->setColumnHidden(0, true);
+    ui->list_teaching->setColumnHidden(1, true);
+    connect(ui->list_teaching->selectionModel(), SIGNAL(currentRowChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(list_teaching_changed(const QModelIndex &)));
+    connect(ui->list_teaching, SIGNAL(clicked(const QModelIndex &)), this, SLOT(list_teaching_changed(const QModelIndex &)));
+    ui->list_teaching->selectRow(0);
+}
+
+void HumanBrowseDialog::btn_teaching_add_clicked()
+{
+    ui->teaching_edit_annual->clear();
+    ui->teaching_combo_semester->setCurrentIndex(0);
+    ui->teaching_edit_course->clear();
+    ui->teaching_combo_sort->setCurrentIndex(0);
+    ui->teaching_combo_level->setCurrentIndex(0);
+    ui->teaching_edit_class->clear();
+    ui->teaching_combo_object->setCurrentIndex(0);
+    ui->teaching_edit_location->clear();
+    ui->teaching_edit_hour->clear();
+    ui->btn_teaching_delete->setEnabled(false);
+    ui->btn_teaching_update->setEnabled(false);
+    ui->btn_teaching_save->setEnabled(true);
+}
+
+void HumanBrowseDialog::btn_teaching_save_clicked()
+{
+    int rowNum = teaching_model->rowCount();
+    teaching_model->insertRow(rowNum);
+    teaching_model->setData(teaching_model->index(rowNum, 0), 0);
+    teaching_model->setData(teaching_model->index(rowNum, 1), ui->edit_current_code->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 2), ui->teaching_edit_annual->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 3), ui->teaching_combo_semester->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 4), ui->teaching_edit_course->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 5), ui->teaching_combo_sort->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 6), ui->teaching_combo_level->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 7), ui->teaching_edit_class->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 8), ui->teaching_combo_object->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 9), ui->teaching_edit_location->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 10), ui->teaching_edit_hour->text().trimmed());
+    teaching_model->submitAll();
+    teaching_model->select();
+    QMessageBox::information(this, tr("提示"), tr("课程教学记录添加成功！"));
+    ui->list_teaching->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_teaching_update_clicked()
+{
+    int rowNum = ui->list_teaching->currentIndex().row(); // 获取选中行
+    teaching_model->setData(teaching_model->index(rowNum, 2), ui->teaching_edit_annual->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 3), ui->teaching_combo_semester->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 4), ui->teaching_edit_course->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 5), ui->teaching_combo_sort->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 6), ui->teaching_combo_level->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 7), ui->teaching_edit_class->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 8), ui->teaching_combo_object->currentText().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 9), ui->teaching_edit_location->text().trimmed());
+    teaching_model->setData(teaching_model->index(rowNum, 10), ui->teaching_edit_hour->text().trimmed());
+    teaching_model->submitAll();
+    teaching_model->select();
+    QMessageBox::information(this, tr("提示"), tr("课程教学记录修改成功！"));
+    ui->list_teaching->selectRow(rowNum);
+}
+
+void HumanBrowseDialog::btn_teaching_delete_clicked()
+{
+    if (teaching_model->rowCount() <= 0) // 空列表
+        return;
+
+    if (QMessageBox::warning(this, tr("删除课程教学记录"), tr("您是否确定删除当前选中的课程教学记录？"), QMessageBox::Yes|QMessageBox::No) == QMessageBox::Yes)
+    {
+        int nIndexRow = ui->list_teaching->currentIndex().row(); // 获取选中行
+        teaching_model->removeRow(nIndexRow--);
+        teaching_model->submitAll();
+        teaching_model->select();
+        if (nIndexRow < 0) nIndexRow = 0; // 防止越界
+        if (ui->list_teaching->horizontalHeader()->count() > nIndexRow) // 列表判空
+            ui->list_teaching->selectRow(nIndexRow);
+        else
+            ui->btn_teaching_add->click();
+    }
+}
+
+void HumanBrowseDialog::list_teaching_changed(const QModelIndex &current)
+{
+    ui->teaching_edit_annual->setText(teaching_model->index(current.row(), 2).data().toString());
+    ui->teaching_combo_semester->setCurrentText(teaching_model->index(current.row(), 3).data().toString());
+    ui->teaching_edit_course->setText(teaching_model->index(current.row(), 4).data().toString());
+    ui->teaching_combo_sort->setCurrentText(teaching_model->index(current.row(), 5).data().toString());
+    ui->teaching_combo_level->setCurrentText(teaching_model->index(current.row(), 6).data().toString());
+    ui->teaching_edit_class->setText(teaching_model->index(current.row(), 7).data().toString());
+    ui->teaching_combo_object->setCurrentText(teaching_model->index(current.row(), 8).data().toString());
+    ui->teaching_edit_location->setText(teaching_model->index(current.row(), 9).data().toString());
+    ui->teaching_edit_hour->setText(teaching_model->index(current.row(), 10).data().toString());
+    ui->btn_teaching_delete->setEnabled(true);
+    ui->btn_teaching_update->setEnabled(true);
+    ui->btn_teaching_save->setEnabled(false);
+}

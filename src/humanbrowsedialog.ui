@@ -152,7 +152,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -3562,13 +3562,13 @@
     <attribute name="title">
      <string>职称评定</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_49">
+    <widget class="QPushButton" name="btn_technical_delete">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>530</x>
        <y>330</y>
        <width>75</width>
        <height>23</height>
@@ -3581,7 +3581,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_50">
+    <widget class="QPushButton" name="btn_technical_add">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -3597,13 +3597,13 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_51">
+    <widget class="QPushButton" name="btn_technical_save">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>310</x>
        <y>330</y>
        <width>75</width>
        <height>23</height>
@@ -3616,7 +3616,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_13">
+    <widget class="QTableView" name="list_technical">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -3625,6 +3625,24 @@
        <height>181</height>
       </rect>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>15</number>
+     </attribute>
     </widget>
     <widget class="QWidget" name="layoutWidget_31">
      <property name="geometry">
@@ -3640,7 +3658,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_officephone_39">
+       <widget class="QLabel" name="technical_label_title">
         <property name="text">
          <string>专业技术资格名称：</string>
         </property>
@@ -3650,9 +3668,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="edit_officephone_29">
+       <widget class="QLineEdit" name="technical_edit_title">
         <property name="maxLength">
-         <number>20</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
@@ -3672,7 +3690,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_mobilephone_17">
+       <widget class="QLabel" name="technical_label_mode">
         <property name="text">
          <string>评定方式：</string>
         </property>
@@ -3682,7 +3700,18 @@
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox_35"/>
+       <widget class="QComboBox" name="technical_combo_mode">
+        <item>
+         <property name="text">
+          <string>评审</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>认定</string>
+         </property>
+        </item>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -3700,7 +3729,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_officephone_40">
+       <widget class="QLabel" name="technical_label_unit">
         <property name="text">
          <string>评定单位：</string>
         </property>
@@ -3710,9 +3739,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="edit_officephone_30">
+       <widget class="QLineEdit" name="technical_edit_unit">
         <property name="maxLength">
-         <number>20</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
@@ -3732,7 +3761,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_birth_19">
+       <widget class="QLabel" name="technical_label_assess">
         <property name="text">
          <string>取得时间：</string>
         </property>
@@ -3742,7 +3771,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="date_birth_23">
+       <widget class="QDateEdit" name="technical_date_assess">
         <property name="date">
          <date>
           <year>2017</year>
@@ -3754,7 +3783,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton_52">
+    <widget class="QPushButton" name="btn_technical_update">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -3787,7 +3816,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_birth_20">
+       <widget class="QLabel" name="technical_label_begin">
         <property name="text">
          <string>聘用开始时间：</string>
         </property>
@@ -3797,7 +3826,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="date_birth_24">
+       <widget class="QDateEdit" name="technical_date_begin">
         <property name="date">
          <date>
           <year>2017</year>
@@ -3823,7 +3852,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_birth_21">
+       <widget class="QLabel" name="technical_label_end">
         <property name="text">
          <string>聘用结束时间：</string>
         </property>
@@ -3833,7 +3862,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="date_birth_25">
+       <widget class="QDateEdit" name="technical_date_end">
         <property name="date">
          <date>
           <year>2017</year>
@@ -3859,7 +3888,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_officephone_41">
+       <widget class="QLabel" name="technical_label_employ">
         <property name="text">
          <string>聘用单位：</string>
         </property>
@@ -3869,9 +3898,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="edit_officephone_31">
+       <widget class="QLineEdit" name="technical_edit_employ">
         <property name="maxLength">
-         <number>20</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
@@ -3891,7 +3920,7 @@
        <number>10</number>
       </property>
       <item>
-       <widget class="QLabel" name="label_officephone_42">
+       <widget class="QLabel" name="technical_label_hire">
         <property name="text">
          <string>聘用专业技术职务：</string>
         </property>
@@ -3901,9 +3930,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="edit_officephone_32">
+       <widget class="QLineEdit" name="technical_edit_hire">
         <property name="maxLength">
-         <number>20</number>
+         <number>100</number>
         </property>
        </widget>
       </item>
@@ -3914,7 +3943,7 @@
     <attribute name="title">
      <string>学历教育</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_53">
+    <widget class="QPushButton" name="btn_academic_add">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -3930,13 +3959,13 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_54">
+    <widget class="QPushButton" name="btn_academic_delete">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>530</x>
        <y>330</y>
        <width>75</width>
        <height>23</height>
@@ -3982,7 +4011,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_43">
+           <widget class="QLabel" name="academic_label_begin">
             <property name="text">
              <string>开始时间：</string>
             </property>
@@ -3992,7 +4021,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="date_birth_28">
+           <widget class="QDateEdit" name="academic_date_begin">
             <property name="date">
              <date>
               <year>2017</year>
@@ -4010,7 +4039,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_18">
+           <widget class="QLabel" name="academic_label_end">
             <property name="text">
              <string>结束时间：</string>
             </property>
@@ -4020,7 +4049,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="date_birth_29">
+           <widget class="QDateEdit" name="academic_date_end">
             <property name="date">
              <date>
               <year>2017</year>
@@ -4038,7 +4067,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_email_35">
+           <widget class="QLabel" name="academic_label_university">
             <property name="text">
              <string>毕业院校：</string>
             </property>
@@ -4048,7 +4077,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_email_21">
+           <widget class="QLineEdit" name="academic_edit_university">
             <property name="maxLength">
              <number>50</number>
             </property>
@@ -4069,7 +4098,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_birth_22">
+           <widget class="QLabel" name="academic_label_department">
             <property name="text">
              <string>所在院系：</string>
             </property>
@@ -4079,9 +4108,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_age_17">
+           <widget class="QLineEdit" name="academic_edit_department">
             <property name="maxLength">
-             <number>4</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4093,7 +4122,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_44">
+           <widget class="QLabel" name="academic_label_major">
             <property name="text">
              <string>所学专业：</string>
             </property>
@@ -4103,7 +4132,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_officephone_34">
+           <widget class="QLineEdit" name="academic_edit_major">
             <property name="maxLength">
              <number>20</number>
             </property>
@@ -4124,7 +4153,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_46">
+           <widget class="QLabel" name="academic_label_diploma">
             <property name="text">
              <string>学　　历：</string>
             </property>
@@ -4134,7 +4163,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_37"/>
+           <widget class="QComboBox" name="academic_combo_diploma">
+            <item>
+             <property name="text">
+              <string>大学</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>研究生</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>其他</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4144,7 +4189,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_19">
+           <widget class="QLabel" name="academic_label_degree">
             <property name="text">
              <string>学　　位：</string>
             </property>
@@ -4154,7 +4199,28 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_38"/>
+           <widget class="QComboBox" name="academic_combo_degree">
+            <item>
+             <property name="text">
+              <string>本科</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>硕士</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>博士</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>其他</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4162,7 +4228,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton_55">
+    <widget class="QPushButton" name="btn_academic_update">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -4181,7 +4247,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_14">
+    <widget class="QTableView" name="list_academic">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -4190,14 +4256,32 @@
        <height>181</height>
       </rect>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>15</number>
+     </attribute>
     </widget>
-    <widget class="QPushButton" name="pushButton_56">
+    <widget class="QPushButton" name="btn_academic_save">
      <property name="enabled">
       <bool>false</bool>
      </property>
      <property name="geometry">
       <rect>
-       <x>530</x>
+       <x>310</x>
        <y>330</y>
        <width>75</width>
        <height>23</height>
@@ -4215,7 +4299,7 @@
     <attribute name="title">
      <string>继续教育</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_57">
+    <widget class="QPushButton" name="btn_continue_add">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -4264,7 +4348,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_45">
+           <widget class="QLabel" name="continue_label_mode">
             <property name="text">
              <string>教育方式：</string>
             </property>
@@ -4274,7 +4358,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_39"/>
+           <widget class="QComboBox" name="continue_combo_mode">
+            <item>
+             <property name="text">
+              <string>在线</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>集中</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>分散</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4284,7 +4384,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_20">
+           <widget class="QLabel" name="continue_label_begin">
             <property name="text">
              <string>开始时间：</string>
             </property>
@@ -4294,7 +4394,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="date_birth_30">
+           <widget class="QDateEdit" name="continue_date_begin">
             <property name="date">
              <date>
               <year>2017</year>
@@ -4312,7 +4412,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_email_36">
+           <widget class="QLabel" name="continue_label_end">
             <property name="text">
              <string>结束时间：</string>
             </property>
@@ -4322,7 +4422,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="date_birth_26">
+           <widget class="QDateEdit" name="continue_date_end">
             <property name="date">
              <date>
               <year>2017</year>
@@ -4347,7 +4447,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_birth_24">
+           <widget class="QLabel" name="continue_label_effect">
             <property name="text">
              <string>教育效果：</string>
             </property>
@@ -4357,7 +4457,28 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_36"/>
+           <widget class="QComboBox" name="continue_combo_effect">
+            <item>
+             <property name="text">
+              <string>优秀</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>良好</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>及格</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>不合格</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4367,7 +4488,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_marriage_9">
+           <widget class="QLabel" name="continue_label_content">
             <property name="text">
              <string>教育内容：</string>
             </property>
@@ -4377,9 +4498,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_age_18">
+           <widget class="QLineEdit" name="continue_edit_content">
             <property name="maxLength">
-             <number>4</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4391,7 +4512,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_age_13">
+           <widget class="QLabel" name="continue_label_unit">
             <property name="text">
              <string>培训单位：</string>
             </property>
@@ -4401,9 +4522,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_age_19">
+           <widget class="QLineEdit" name="continue_edit_unit">
             <property name="maxLength">
-             <number>4</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4422,7 +4543,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_47">
+           <widget class="QLabel" name="continue_label_location">
             <property name="text">
              <string>培训地点：</string>
             </property>
@@ -4432,9 +4553,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_officephone_33">
+           <widget class="QLineEdit" name="continue_edit_location">
             <property name="maxLength">
-             <number>20</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4446,7 +4567,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_21">
+           <widget class="QLabel" name="continue_label_cost">
             <property name="text">
              <string>培训经费：</string>
             </property>
@@ -4456,9 +4577,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_officephone_35">
+           <widget class="QLineEdit" name="continue_edit_cost">
             <property name="maxLength">
-             <number>20</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4470,7 +4591,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_email_37">
+           <widget class="QLabel" name="continue_label_hour">
             <property name="text">
              <string>培训学时：</string>
             </property>
@@ -4480,9 +4601,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_email_23">
+           <widget class="QLineEdit" name="continue_edit_hour">
             <property name="maxLength">
-             <number>50</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4492,26 +4613,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton_58">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>330</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>删除</string>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_59">
+    <widget class="QPushButton" name="btn_continue_delete">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -4524,13 +4626,32 @@
       </rect>
      </property>
      <property name="text">
+      <string>删除</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_continue_save">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>330</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
       <string>保存</string>
      </property>
      <property name="autoDefault">
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_60">
+    <widget class="QPushButton" name="btn_continue_update">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -4549,7 +4670,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_15">
+    <widget class="QTableView" name="list_continue">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -4558,13 +4679,31 @@
        <height>181</height>
       </rect>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>15</number>
+     </attribute>
     </widget>
    </widget>
    <widget class="QWidget" name="tab_11">
     <attribute name="title">
      <string>课堂教学</string>
     </attribute>
-    <widget class="QPushButton" name="pushButton_61">
+    <widget class="QPushButton" name="btn_teaching_add">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -4613,7 +4752,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_48">
+           <widget class="QLabel" name="teaching_label_annual">
             <property name="text">
              <string>年　　度：</string>
             </property>
@@ -4623,7 +4762,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_officephone_38">
+           <widget class="QLineEdit" name="teaching_edit_annual">
             <property name="maxLength">
              <number>20</number>
             </property>
@@ -4637,7 +4776,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_22">
+           <widget class="QLabel" name="teaching_label_semester">
             <property name="text">
              <string>学　　期：</string>
             </property>
@@ -4647,7 +4786,18 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_41"/>
+           <widget class="QComboBox" name="teaching_combo_semester">
+            <item>
+             <property name="text">
+              <string>1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>2</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4657,7 +4807,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_email_38">
+           <widget class="QLabel" name="teaching_label_course">
             <property name="text">
              <string>课 程 名：</string>
             </property>
@@ -4667,7 +4817,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_email_22">
+           <widget class="QLineEdit" name="teaching_edit_course">
             <property name="maxLength">
              <number>50</number>
             </property>
@@ -4688,7 +4838,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_birth_25">
+           <widget class="QLabel" name="teaching_label_sort">
             <property name="text">
              <string>课程性质：</string>
             </property>
@@ -4698,7 +4848,18 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_42"/>
+           <widget class="QComboBox" name="teaching_combo_sort">
+            <item>
+             <property name="text">
+              <string>理论</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>实验</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4708,7 +4869,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_marriage_10">
+           <widget class="QLabel" name="teaching_label_level">
             <property name="text">
              <string>课程类别：</string>
             </property>
@@ -4718,7 +4879,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_43"/>
+           <widget class="QComboBox" name="teaching_combo_level">
+            <item>
+             <property name="text">
+              <string>专业基础课</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>专业必修课</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>专业选修课</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4728,7 +4905,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_age_14">
+           <widget class="QLabel" name="teaching_label_class">
             <property name="text">
              <string>授课班级：</string>
             </property>
@@ -4738,9 +4915,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_age_21">
+           <widget class="QLineEdit" name="teaching_edit_class">
             <property name="maxLength">
-             <number>4</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4759,7 +4936,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_officephone_49">
+           <widget class="QLabel" name="teaching_label_object">
             <property name="text">
              <string>授课对象：</string>
             </property>
@@ -4769,7 +4946,23 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_40"/>
+           <widget class="QComboBox" name="teaching_combo_object">
+            <item>
+             <property name="text">
+              <string>本科生</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>专科生</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>研究生</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -4779,7 +4972,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_mobilephone_23">
+           <widget class="QLabel" name="teaching_label_hour">
             <property name="text">
              <string>学　　时：</string>
             </property>
@@ -4789,9 +4982,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_officephone_37">
+           <widget class="QLineEdit" name="teaching_edit_hour">
             <property name="maxLength">
-             <number>20</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -4803,7 +4996,7 @@
            <number>10</number>
           </property>
           <item>
-           <widget class="QLabel" name="label_email_39">
+           <widget class="QLabel" name="teaching_label_location">
             <property name="text">
              <string>地　　点：</string>
             </property>
@@ -4813,7 +5006,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="edit_email_24">
+           <widget class="QLineEdit" name="teaching_edit_location">
             <property name="maxLength">
              <number>50</number>
             </property>
@@ -4825,26 +5018,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton_62">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>330</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>删除</string>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_63">
+    <widget class="QPushButton" name="btn_teaching_delete">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -4857,13 +5031,32 @@
       </rect>
      </property>
      <property name="text">
+      <string>删除</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btn_teaching_save">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>310</x>
+       <y>330</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
       <string>保存</string>
      </property>
      <property name="autoDefault">
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_64">
+    <widget class="QPushButton" name="btn_teaching_update">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -4882,7 +5075,7 @@
       <bool>false</bool>
      </property>
     </widget>
-    <widget class="QTableView" name="tableView_16">
+    <widget class="QTableView" name="list_teaching">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -4891,6 +5084,24 @@
        <height>181</height>
       </rect>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <attribute name="horizontalHeaderStretchLastSection">
+      <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderDefaultSectionSize">
+      <number>25</number>
+     </attribute>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>15</number>
+     </attribute>
     </widget>
    </widget>
   </widget>

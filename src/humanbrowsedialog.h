@@ -29,6 +29,10 @@ private:
     QSqlTableModel *punish_model;
     QSqlTableModel *paper_model;
     QSqlTableModel *project_model;
+    QSqlTableModel *technical_model;
+    QSqlTableModel *academic_model;
+    QSqlTableModel *continue_model;
+    QSqlTableModel *teaching_model;
     void tab_base_archive_init();
     void tab_family_member_init();
     void tab_work_experience_init();
@@ -36,8 +40,13 @@ private:
     void tab_punish_init();
     void tab_paper_init();
     void tab_project_init();
+    void tab_technical_init();
+    void tab_academic_init();
+    void tab_continue_init();
+    void tab_teaching_init();
 
 private slots:
+    void btn_select_clicked();
     void btn_total_add_clicked();
     void btn_total_save_clicked();
     void btn_total_update_clicked();
@@ -74,7 +83,26 @@ private slots:
     void btn_project_update_clicked();
     void btn_project_delete_clicked();
     void list_project_changed(const QModelIndex &current);
-//    void btn_select_clicked();
+    void btn_technical_add_clicked();
+    void btn_technical_save_clicked();
+    void btn_technical_update_clicked();
+    void btn_technical_delete_clicked();
+    void list_technical_changed(const QModelIndex &current);
+    void btn_academic_add_clicked();
+    void btn_academic_save_clicked();
+    void btn_academic_update_clicked();
+    void btn_academic_delete_clicked();
+    void list_academic_changed(const QModelIndex &current);
+    void btn_continue_add_clicked();
+    void btn_continue_save_clicked();
+    void btn_continue_update_clicked();
+    void btn_continue_delete_clicked();
+    void list_continue_changed(const QModelIndex &current);
+    void btn_teaching_add_clicked();
+    void btn_teaching_save_clicked();
+    void btn_teaching_update_clicked();
+    void btn_teaching_delete_clicked();
+    void list_teaching_changed(const QModelIndex &current);
 };
 
 #endif // HUMANBROSEDIALOG_H

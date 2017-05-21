@@ -9,6 +9,13 @@ LoginDialog::LoginDialog(QWidget *parent) :
     SqlController(SQLModel::instance())
 {
     ui->setupUi(this);
+
+    // 读取用户
+    QSqlQuery user_query("SELECT customer FROM `user`", SqlController->getDefaultConnection());
+    while (user_query.next())
+        ui->edit_username->addItem(user_query.value(0).toString());
+    ui->edit_username->setCurrentText("");
+
     connect(ui->btn_login, SIGNAL(clicked(bool)), this, SLOT(btn_login()));
 }
 
