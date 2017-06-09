@@ -23,13 +23,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionSysReload, SIGNAL(triggered(bool)), this, SLOT(slotSysReload()));
     connect(ui->actionAbout, SIGNAL(triggered(bool)), this, SLOT(slotAbout()));
     connect(ui->actionHelpDocument, SIGNAL(triggered(bool)), this, SLOT(slotHelpDocument()));
-
-//    ui->actionHumanBrowse->setEnabled(false);
-    ui->actionHumanQuery->setEnabled(false);
-    ui->actionHumanStatistics->setEnabled(false);
-    ui->actionToolContacts->setEnabled(false);
-    ui->actionToolMeeting->setEnabled(false);
-    ui->actionToolNotes->setEnabled(false);
+    connect(ui->actionHumanBrowse, SIGNAL(triggered(bool)), this, SLOT(slotHumanBrowse()));
+    connect(ui->actionHumanQuery, SIGNAL(triggered(bool)), this, SLOT(slotHumanQuery()));
+    connect(ui->actionHumanStatistics, SIGNAL(triggered(bool)), this, SLOT(slotHumanStatistics()));
+    connect(ui->actionToolNotes, SIGNAL(triggered(bool)), this, SLOT(slotToolNotes()));
+    connect(ui->actionToolContacts, SIGNAL(triggered(bool)), this, SLOT(slotToolContacts()));
+    connect(ui->actionToolMeeting, SIGNAL(triggered(bool)), this, SLOT(slotToolMeeting()));
 
     if (!SqlController->m_bIsAdministrator) // 非管理员
     {
@@ -68,7 +67,6 @@ MainWindow::MainWindow(QWidget *parent) :
         connect(ui->actionOrgAuxiliary, SIGNAL(triggered(bool)), this, SLOT(slotOrgAuxiliary()));
         connect(ui->actionOrgAppendant, SIGNAL(triggered(bool)), this, SLOT(slotOrgAppendant()));
         connect(ui->actionOrgFulltime, SIGNAL(triggered(bool)), this, SLOT(slotOrgFulltime()));
-        connect(ui->actionHumanBrowse, SIGNAL(triggered(bool)), this, SLOT(slotHumanBrowse()));
     }
 }
 
@@ -227,4 +225,34 @@ void MainWindow::slotHelpDocument()
     QProcess *p_helpProcess = new QProcess(this);
     QStringList argument("databases.chm");
     p_helpProcess->start("hh.exe", argument);
+}
+
+void MainWindow::slotHumanQuery()
+{
+    HumanSearchDialog dialog_search(this);
+    dialog_search.exec();
+}
+
+void MainWindow::slotHumanStatistics()
+{
+    HumanStatisticsDialog dialog_statistics(this);
+    dialog_statistics.exec();
+}
+
+void MainWindow::slotToolNotes()
+{
+    NotesDialog dialog_notes(this);
+    dialog_notes.exec();
+}
+
+void MainWindow::slotToolContacts()
+{
+    ContactsDialog dialog_contacts(this);
+    dialog_contacts.exec();
+}
+
+void MainWindow::slotToolMeeting()
+{
+    MeetingDialog dialog_meeting(this);
+    dialog_meeting.exec();
 }

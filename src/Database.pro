@@ -44,7 +44,13 @@ SOURCES += main.cpp\
     auxiliarydialog.cpp \
     appendantdialog.cpp \
     fulltimedialog.cpp \
-    humanbrowsedialog.cpp
+    humanbrowsedialog.cpp \
+    humansearchdialog.cpp \
+    humanstatisticsdialog.cpp \
+    notesdialog.cpp \
+    contactsdialog.cpp \
+    newcontactdialog.cpp \
+    meetingdialog.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
@@ -66,7 +72,13 @@ HEADERS  += mainwindow.h \
     auxiliarydialog.h \
     appendantdialog.h \
     fulltimedialog.h \
-    humanbrowsedialog.h
+    humanbrowsedialog.h \
+    humansearchdialog.h \
+    humanstatisticsdialog.h \
+    notesdialog.h \
+    contactsdialog.h \
+    newcontactdialog.h \
+    meetingdialog.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
@@ -86,7 +98,13 @@ FORMS    += mainwindow.ui \
     auxiliarydialog.ui \
     appendantdialog.ui \
     fulltimedialog.ui \
-    humanbrowsedialog.ui
+    humanbrowsedialog.ui \
+    humansearchdialog.ui \
+    humanstatisticsdialog.ui \
+    notesdialog.ui \
+    contactsdialog.ui \
+    newcontactdialog.ui \
+    meetingdialog.ui
 
 RESOURCES += \
     res.qrc

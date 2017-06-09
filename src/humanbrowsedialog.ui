@@ -92,7 +92,7 @@
        <item>
         <widget class="QLineEdit" name="edit_select_content">
          <property name="maxLength">
-          <number>100</number>
+          <number>255</number>
          </property>
         </widget>
        </item>
@@ -930,7 +930,7 @@
           <item>
            <widget class="QLineEdit" name="family_edit_name">
             <property name="maxLength">
-             <number>20</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -978,7 +978,7 @@
           <item>
            <widget class="QLineEdit" name="family_edit_relation">
             <property name="maxLength">
-             <number>50</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -1037,7 +1037,7 @@
           <item>
            <widget class="QLineEdit" name="family_edit_company">
             <property name="maxLength">
-             <number>255</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -1136,7 +1136,7 @@
           <item>
            <widget class="QLineEdit" name="family_edit_education">
             <property name="maxLength">
-             <number>50</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -1447,7 +1447,7 @@
           <item>
            <widget class="QLineEdit" name="workexp_edit_department">
             <property name="maxLength">
-             <number>20</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -1471,7 +1471,7 @@
           <item>
            <widget class="QLineEdit" name="workexp_edit_duty">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -1495,7 +1495,7 @@
           <item>
            <widget class="QLineEdit" name="workexp_edit_technical">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -1546,7 +1546,7 @@
           <item>
            <widget class="QLineEdit" name="workexp_edit_location">
             <property name="maxLength">
-             <number>20</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -1797,7 +1797,7 @@
           <item>
            <widget class="QLineEdit" name="reward_edit_unit">
             <property name="maxLength">
-             <number>100</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -2161,7 +2161,7 @@
           <item>
            <widget class="QLineEdit" name="punish_edit_preason">
             <property name="maxLength">
-             <number>50</number>
+             <number>255</number>
             </property>
            </widget>
           </item>
@@ -2248,7 +2248,7 @@
           <item>
            <widget class="QLineEdit" name="punish_edit_dreason">
             <property name="maxLength">
-             <number>50</number>
+             <number>255</number>
             </property>
            </widget>
           </item>
@@ -2576,7 +2576,7 @@
           <item>
            <widget class="QLineEdit" name="paper_edit_publication">
             <property name="maxLength">
-             <number>50</number>
+             <number>100</number>
             </property>
            </widget>
           </item>
@@ -2635,7 +2635,7 @@
           <item>
            <widget class="QLineEdit" name="paper_edit_pub_year">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -2659,7 +2659,7 @@
           <item>
            <widget class="QLineEdit" name="paper_edit_volume">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -2683,7 +2683,7 @@
           <item>
            <widget class="QLineEdit" name="paper_edit_issue">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -2714,7 +2714,7 @@
           <item>
            <widget class="QLineEdit" name="paper_edit_page">
             <property name="maxLength">
-             <number>100</number>
+             <number>10</number>
             </property>
            </widget>
           </item>
@@ -3170,7 +3170,7 @@
       <item>
        <widget class="QLineEdit" name="project_edit_host">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3334,7 +3334,7 @@
       <item>
        <widget class="QLineEdit" name="project_edit_rank">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3366,7 +3366,7 @@
       <item>
        <widget class="QLineEdit" name="project_edit_first">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3398,7 +3398,7 @@
       <item>
        <widget class="QLineEdit" name="project_edit_unit">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3515,7 +3515,7 @@
       <item>
        <widget class="QLineEdit" name="project_edit_cost">
         <property name="maxLength">
-         <number>100</number>
+         <number>20</number>
         </property>
        </widget>
       </item>
@@ -3741,7 +3741,7 @@
       <item>
        <widget class="QLineEdit" name="technical_edit_unit">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3900,7 +3900,7 @@
       <item>
        <widget class="QLineEdit" name="technical_edit_employ">
         <property name="maxLength">
-         <number>100</number>
+         <number>50</number>
         </property>
        </widget>
       </item>
@@ -3932,7 +3932,7 @@
       <item>
        <widget class="QLineEdit" name="technical_edit_hire">
         <property name="maxLength">
-         <number>100</number>
+         <number>20</number>
         </property>
        </widget>
       </item>
@@ -4110,7 +4110,7 @@
           <item>
            <widget class="QLineEdit" name="academic_edit_department">
             <property name="maxLength">
-             <number>100</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -4500,7 +4500,7 @@
           <item>
            <widget class="QLineEdit" name="continue_edit_content">
             <property name="maxLength">
-             <number>100</number>
+             <number>255</number>
             </property>
            </widget>
           </item>
@@ -4524,7 +4524,7 @@
           <item>
            <widget class="QLineEdit" name="continue_edit_unit">
             <property name="maxLength">
-             <number>100</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -4579,7 +4579,7 @@
           <item>
            <widget class="QLineEdit" name="continue_edit_cost">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -4603,7 +4603,7 @@
           <item>
            <widget class="QLineEdit" name="continue_edit_hour">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -4819,7 +4819,7 @@
           <item>
            <widget class="QLineEdit" name="teaching_edit_course">
             <property name="maxLength">
-             <number>50</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -4917,7 +4917,7 @@
           <item>
            <widget class="QLineEdit" name="teaching_edit_class">
             <property name="maxLength">
-             <number>100</number>
+             <number>30</number>
             </property>
            </widget>
           </item>
@@ -4984,7 +4984,7 @@
           <item>
            <widget class="QLineEdit" name="teaching_edit_hour">
             <property name="maxLength">
-             <number>100</number>
+             <number>20</number>
             </property>
            </widget>
           </item>
@@ -5008,7 +5008,7 @@
           <item>
            <widget class="QLineEdit" name="teaching_edit_location">
             <property name="maxLength">
-             <number>50</number>
+             <number>100</number>
             </property>
            </widget>
           </item>

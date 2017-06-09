@@ -388,13 +388,13 @@ void HumanBrowseDialog::btn_total_save_clicked()
     // staff 表两个非空属性
     if (ui->base_edit_code->text().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, tr("修改教工档案"), tr("请输入职工编号！"));
+        QMessageBox::warning(this, tr("新增教工档案"), tr("请输入职工编号！"));
         ui->base_edit_code->setFocus();
         return;
     }
     if (ui->base_edit_name->text().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, tr("修改教工档案"), tr("请输入职工姓名！"));
+        QMessageBox::warning(this, tr("新增教工档案"), tr("请输入职工姓名！"));
         ui->base_edit_name->setFocus();
         return;
     }
@@ -626,13 +626,13 @@ void HumanBrowseDialog::btn_family_save_clicked()
     // family member 表两个非空属性
     if (ui->family_edit_name->text().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, tr("修改家庭成员"), tr("请输入家庭成员姓名！"));
+        QMessageBox::warning(this, tr("添加家庭成员"), tr("请输入家庭成员姓名！"));
         ui->family_edit_name->setFocus();
         return;
     }
     if (ui->family_edit_idcard->text().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, tr("修改家庭成员"), tr("请输入家庭成员身份证号！"));
+        QMessageBox::warning(this, tr("添加家庭成员"), tr("请输入家庭成员身份证号！"));
         ui->family_edit_idcard->setFocus();
         return;
     }

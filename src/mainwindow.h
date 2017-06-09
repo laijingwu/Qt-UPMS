@@ -26,6 +26,11 @@
 #include "appendantdialog.h"
 #include "fulltimedialog.h"
 #include "humanbrowsedialog.h"
+#include "humansearchdialog.h"
+#include "humanstatisticsdialog.h"
+#include "notesdialog.h"
+#include "contactsdialog.h"
+#include "meetingdialog.h"
 
 #define EXIT_RESTART 773
 
@@ -71,6 +76,11 @@ private slots:
     void slotOrgFulltime();
     void slotHumanBrowse();
     void slotHelpDocument();
+    void slotHumanQuery();
+    void slotHumanStatistics();
+    void slotToolNotes();
+    void slotToolContacts();
+    void slotToolMeeting();
 };
 
 #endif // MAINWINDOW_H
