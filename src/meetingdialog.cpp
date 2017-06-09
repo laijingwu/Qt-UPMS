@@ -153,9 +153,7 @@ void MeetingDialog::btn_delete_clicked()
         if (ui->list_record->horizontalHeader()->count() > nIndexRow) // 列表判空
             ui->list_record->selectRow(nIndexRow);
         else
-        {
-            ui->btn_cancel->click();
-        }
+            emit ui->btn_cancel->clicked();
     }
 }
 
@@ -166,7 +164,10 @@ void MeetingDialog::btn_select_clicked()
     else
         meeting_model->setFilter(QString("%1 LIKE '%%%2%%'").arg(ui->combo_condition->currentData().toString(), ui->edit_content->text().trimmed()));
     meeting_model->select();
-    ui->list_record->selectRow(0);
+    if (meeting_model->rowCount() > 0)
+        ui->list_record->selectRow(0);
+    else
+        emit ui->btn_cancel->clicked();
 }
 
 void MeetingDialog::btn_cancel_clicked()
