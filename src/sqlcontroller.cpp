@@ -59,7 +59,7 @@ bool SQLController::backupDatabase()
 
     QProcess poc;
     poc.setStandardOutputFile(DB_BACKUP_PATH);
-    poc.start(QString("D:\\laijingwu\\cpp\\qt\\Database\\mysqldump.exe --add-drop-table -u%1 -p%2 %3").arg(db_username, db_password, db_name));
+    poc.start(QString("mysqldump.exe --add-drop-table -u%1 -p%2 %3").arg(db_username, db_password, db_name));
     poc.waitForFinished(-1);
     if (backupFile.size() > 0)
         return true;
@@ -75,7 +75,7 @@ bool SQLController::recoverDatabase()
 
     QProcess poc;
     poc.setStandardInputFile(DB_BACKUP_PATH);
-    poc.start(QString("D:\\laijingwu\\cpp\\qt\\Database\\mysqldump.exe -u%1 -p%2 %3").arg(db_username, db_password, db_name));
+    poc.start(QString("mysqldump.exe -u%1 -p%2 %3").arg(db_username, db_password, db_name));
     poc.waitForFinished(-1);
     return true;
 }

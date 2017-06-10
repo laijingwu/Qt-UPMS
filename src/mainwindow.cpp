@@ -223,7 +223,7 @@ void MainWindow::slotHumanBrowse()
 void MainWindow::slotHelpDocument()
 {
     QProcess *p_helpProcess = new QProcess(this);
-    QStringList argument("databases.chm");
+    QStringList argument("help.chm");
     p_helpProcess->start("hh.exe", argument);
 }
 

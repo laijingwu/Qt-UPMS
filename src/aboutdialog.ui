@@ -67,7 +67,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>高校人事信息数据库应用系统 Database v1.0.0</string>
+    <string>高校人事信息数据库应用系统 Database v1.1.0</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btn_close">
